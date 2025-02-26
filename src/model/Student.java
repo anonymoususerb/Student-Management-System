@@ -1,13 +1,11 @@
-  /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
 
-/**
- *
- * @author Asus
- */
+import java.util.ArrayList;
+
 public class Student {
 
     private String id;
@@ -18,6 +16,8 @@ public class Student {
     private String yearLevel;
     private String status;
 
+    private String gender;
+
     public Student(String id, String firstName, String lastName, String MiddleName, String course, String yearLevel, String status) {
         this.id = id;
         this.firstName = firstName;
@@ -26,6 +26,44 @@ public class Student {
         this.course = course;
         this.yearLevel = yearLevel;
         this.status = status;
+    }
+
+    public int genderValue(String gender, ArrayList<Student> std) {
+        int Mcout = 0;
+        int Fcout = 0;
+        Student stud;
+          for (int i = 0; i < std.size(); i++) {
+                stud = std.get(i);
+                if(stud.getGender().equals("Male")){
+                    Mcout++;
+                }else{
+                    Fcout++;
+                }
+                
+            }
+        if (gender.equals("Male")) {
+             return Mcout;
+        }
+        return Fcout;
+     
+    }
+
+    public boolean isIdDuplicate(String id, ArrayList<Student> std) {
+        for (int i = 0; i < std.size(); i++) {
+            Student data = std.get(i);
+            if (data.getId().equalsIgnoreCase(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getId() {
@@ -67,7 +105,7 @@ public class Student {
     public void setMiddleName(String MiddleName) {
         this.MiddleName = MiddleName;
     }
-    
+
     public void setCourse(String course) {
         this.course = course;
     }
@@ -76,8 +114,8 @@ public class Student {
         this.yearLevel = yearLevel;
     }
 
-   public String getStatus() {
-    return status;
-}
+    public String getStatus() {
+        return status;
+    }
 
 }
